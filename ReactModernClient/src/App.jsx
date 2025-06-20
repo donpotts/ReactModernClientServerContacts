@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import LoginSuccessPage from './pages/LoginSuccessPage.jsx';
 import GridContentPage from './pages/GridContentPage.jsx';
-import ContactContentPage from './pages/ContactContentPage.jsx';
+import ContactPage from './pages/ContactPage.jsx'; // Updated import to ContactPage
 import Navbar from './components/Navbar.jsx';
 import SideNav from './components/SideNav.jsx';
 import { validateToken } from './api/auth.js';
@@ -57,11 +57,11 @@ function App() {
 
   const handleLoginSuccess = (token) => {
     setIsAuthenticated(true);
-    localStorage.setItem('authToken', token); 
+    localStorage.setItem('authToken', token);
     setAuthToken(token);
     setCurrentPage('success');
   };
-  
+
   const handleOkAndOpenSideNav = () => {
     setIsSideNavOpen(true);
     setCurrentPage('home');
@@ -86,7 +86,7 @@ function App() {
     setCurrentPage('contacts');
     setIsSideNavOpen(false);
   };
-  
+
   const goToHome = () => {
     setCurrentPage('home');
     setIsSideNavOpen(false);
@@ -101,7 +101,7 @@ function App() {
     console.log('Navigated to Home from Contact Page (from ContactContentPage).');
   };
 
- const renderContent = () => {
+  const renderContent = () => {
     if (appLoading) {
       return (
         <div className="flex items-center justify-center min-h-screen text-white text-2xl animate-pulse">
@@ -121,7 +121,7 @@ function App() {
         return <GridContentPage data={getHomeGridData} />;
       case 'contacts':
         return (
-          <ContactContentPage
+          <ContactPage // Changed from ContactContentPage to ContactPage
             authToken={authToken}
             onGoToHome={handleGoToHomeFromContact}
           />
@@ -142,7 +142,7 @@ function App() {
         onGoToHome={goToHome}
       />
 
-      {}
+      {/* Side Navigation */}
       {isAuthenticated && (
         <SideNav
           isOpen={isSideNavOpen}
@@ -152,9 +152,9 @@ function App() {
         />
       )}
 
-      {}
+      {/* Main Content Area */}
       <div className="flex-grow flex items-center justify-center w-full">
-        {renderContent()} {}
+        {renderContent()} {/* Renders the appropriate page content */}
       </div>
     </div>
   );
