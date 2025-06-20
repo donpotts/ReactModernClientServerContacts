@@ -1,0 +1,17 @@
+@import "tailwindcss";
+/* Global Styles Specific to Your Application */
+html, body, #root {
+  height: 100%;       /* Ensures the HTML, body, and root div take full viewport height */
+  margin: 0;          /* Removes default browser margin */
+  font-family: 'Inter', sans-serif; /* Sets the font family for the entire application */
+}
+
+/* Custom Animation Definitions */
+/* This defines the 'fadeIn' animation used by the 'animate-fade-in' class in your React components */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
